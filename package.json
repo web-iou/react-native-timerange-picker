@@ -1,7 +1,7 @@
 {
   "name": "react-native-timerange-picker",
   "version": "0.1.0",
-  "description": "1",
+  "description": "a native time range picker component for react-native",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
@@ -47,14 +47,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://www.github.com.git"
+    "url": "https://github.com/web-iou/react-native-timerange-picker.git"
   },
-  "author": "see_you <18157059951@163.com> (https://www.github.com)",
+  "author": "see_you <18157059951@163.com> (https://github.com/web-iou)",
   "license": "MIT",
   "bugs": {
-    "url": "https://www.github.com/issues"
+    "url": "https://github.com/web-iou/react-native-timerange-picker/issues"
   },
-  "homepage": "https://www.github.com#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
