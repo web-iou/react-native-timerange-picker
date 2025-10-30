@@ -324,9 +324,9 @@ using namespace facebook::react;
         if (self->_eventEmitter) {
             auto eventEmitter = std::static_pointer_cast<const TimerangePickerViewEventEmitter>(self->_eventEmitter);
             TimerangePickerViewEventEmitter::OnConfirm data = {
-                .time = {
-                    .start = std::string([startTime UTF8String]),
-                    .end = std::string([endTime UTF8String])
+                .value = {
+                    std::string([startTime UTF8String]),
+                    std::string([endTime UTF8String])
                 }
             };
             eventEmitter->onConfirm(data);
@@ -649,6 +649,40 @@ using namespace facebook::react;
             if (color) {
                 [_cancelButton setTitleColor:color forState:UIControlStateNormal];
             }
+        }
+    }
+    
+    // 处理value属性（受控组件）
+    if (oldViewProps.value.start != newViewProps.value.start ||
+        oldViewProps.value.end != newViewProps.value.end) {
+        
+        // 解析start时间（格式：HH:MM）
+        if (!newViewProps.value.start.empty()) {
+            NSString *startTime = [NSString stringWithUTF8String:newViewProps.value.start.c_str()];
+            NSArray *startComponents = [startTime componentsSeparatedByString:@":"];
+            if (startComponents.count == 2) {
+                _startHour = [startComponents[0] integerValue];
+                _startMinute = [startComponents[1] integerValue];
+            }
+        }
+        
+        // 解析end时间（格式：HH:MM）
+        if (!newViewProps.value.end.empty()) {
+            NSString *endTime = [NSString stringWithUTF8String:newViewProps.value.end.c_str()];
+            NSArray *endComponents = [endTime componentsSeparatedByString:@":"];
+            if (endComponents.count == 2) {
+                _endHour = [endComponents[0] integerValue];
+                _endMinute = [endComponents[1] integerValue];
+            }
+        }
+        
+        // 更新PickerView的选中状态
+        if (_pickerView) {
+            [_pickerView selectRow:_startHour inComponent:0 animated:NO];
+            [_pickerView selectRow:_startMinute inComponent:1 animated:NO];
+            [_pickerView selectRow:_endHour inComponent:3 animated:NO];
+            [_pickerView selectRow:_endMinute inComponent:4 animated:NO];
+            [_pickerView reloadAllComponents];
         }
     }
 

@@ -12,6 +12,7 @@
     },
     "./package.json": "./package.json"
   },
+  "homepage": "https://github.com/web-iou/react-native-timerange-picker",
   "files": [
     "src",
     "lib",

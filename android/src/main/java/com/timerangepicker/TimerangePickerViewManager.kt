@@ -109,6 +109,15 @@ class TimerangePickerViewManager : SimpleViewManager<TimerangePickerView>(),
     }
   }
 
+  @ReactProp(name = "value")
+  override fun setValue(view: TimerangePickerView?, value: ReadableMap?) {
+    value?.let { map ->
+      val start = if (map.hasKey("start")) map.getString("start") else null
+      val end = if (map.hasKey("end")) map.getString("end") else null
+      view?.setValue(start, end)
+    }
+  }
+
 
   override fun getExportedCustomDirectEventTypeConstants(): MutableMap<String, Any>? {
     return MapBuilder.of(

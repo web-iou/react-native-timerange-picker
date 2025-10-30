@@ -2254,7 +2254,7 @@ PODS:
     - React-utils (= 0.81.1)
     - SocketRocket
   - SocketRocket (0.7.1)
-  - TimerangePicker (0.1.0):
+  - TimerangePicker (0.2.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -2583,7 +2583,7 @@ SPEC CHECKSUMS:
   ReactCodegen: 3baedb0c33f963250c866151b825a3c5194b12f1
   ReactCommon: e897f9a1b4afab370cfefaaf5fb3c80371bc3937
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  TimerangePicker: 009dceec3567aff535ddb5ef08dc66b1e35515ff
+  TimerangePicker: 019408134b785721838d5a9697d14676f786c26e
   Yoga: 11c9686a21e2cd82a094a723649d9f4507200fb0
 
 PODFILE CHECKSUM: 03c6e4579f481433033b489c163886d3380aa753

@@ -4,12 +4,12 @@ import { TimerangePickerView } from 'react-native-timerange-picker';
 
 export default function App() {
   const [visible, setVisible] = useState(false);
-  const [timeRange, setTimeRange] = useState({ start: '', end: '' });
+  const [timeRange, setTimeRange] = useState({ start: '09:00', end: '23:00' });
   const [separatorText, setSeparatorText] = useState('至');
   const [selectedColor, setSelectedColor] = useState('#262626');
 
   const handleConfirm = (event: any) => {
-    const { start, end } = event.nativeEvent.time;
+    const [start, end] = event.nativeEvent.value;
     setTimeRange({ start, end });
     // 事件已经在动画完成后触发，直接设置即可
     setVisible(false);
@@ -43,6 +43,7 @@ export default function App() {
 
       <TimerangePickerView
         visible={visible}
+        value={timeRange}
         title="选择时间段"
         confirmText="确定1"
         cancelText="取消1"

@@ -1,15 +1,16 @@
-import { codegenNativeComponent, type ViewProps } from 'react-native';
+import { type ViewProps } from 'react-native';
 import type {
   BubblingEventHandler,
   Int32,
 } from 'react-native/Libraries/Types/CodegenTypesNamespace';
-
+import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
 interface OnConfirmEvent {
-  time: {
-    start: string;
-    end: string;
-  };
+  value: string[];
 }
+type Value = {
+  start: string;
+  end: string;
+};
 interface OnCancelEvent {}
 interface TextStyle {
   color?: string;
@@ -24,6 +25,7 @@ interface NativeProps extends ViewProps {
   cancelText?: string;
   title?: string;
   titleStyle?: TextStyle;
+  value?: Value;
   backgroundColor?: string;
   selectedColor?: string;
   confirmTextStyle?: TextStyle;

@@ -165,6 +165,40 @@ class TimerangePickerView : View {
         fontWeight?.let { cancelTextFontWeight = mapFontWeight(it) }
     }
 
+    fun setValue(start: String?, end: String?) {
+        // 解析start时间（格式：HH:MM）
+        start?.let {
+            val parts = it.split(":")
+            if (parts.size == 2) {
+                try {
+                    startHour = parts[0].toInt()
+                    startMinute = parts[1].toInt()
+                    // 更新picker的值（如果已经显示）
+                    startHourPicker?.value = startHour
+                    startMinutePicker?.value = startMinute
+                } catch (e: Exception) {
+                    // 忽略无效格式
+                }
+            }
+        }
+
+        // 解析end时间（格式：HH:MM）
+        end?.let {
+            val parts = it.split(":")
+            if (parts.size == 2) {
+                try {
+                    endHour = parts[0].toInt()
+                    endMinute = parts[1].toInt()
+                    // 更新picker的值（如果已经显示）
+                    endHourPicker?.value = endHour
+                    endMinutePicker?.value = endMinute
+                } catch (e: Exception) {
+                    // 忽略无效格式
+                }
+            }
+        }
+    }
+
     private fun mapFontWeight(weight: Int): Int {
         return when {
             weight >= 700 -> Typeface.BOLD
@@ -640,13 +674,13 @@ class TimerangePickerView : View {
 
         // 在动画完成后再发送事件，避免打断动画
         hidePicker {
-            val timeMap = Arguments.createMap().apply {
-                putString("start", String.format("%02d:%02d", startHour, startMinute))
-                putString("end", String.format("%02d:%02d", endHour, endMinute))
+            val valueArray = Arguments.createArray().apply {
+                pushString(String.format("%02d:%02d", startHour, startMinute))
+                pushString(String.format("%02d:%02d", endHour, endMinute))
             }
 
             val event = Arguments.createMap().apply {
-                putMap("time", timeMap)
+                putArray("value", valueArray)
             }
 
             val reactContext = context as? ReactContext
